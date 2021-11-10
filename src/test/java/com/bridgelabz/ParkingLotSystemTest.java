@@ -47,4 +47,12 @@ public class ParkingLotSystemTest {
         Assertions.assertFalse(isUnParked);
     }
 
+    @Test
+    public void givenAVehicle_WhenUnParkedAnotherVehicle_ShouldReturnFalse() {
+        Object vehicle = new Object();
+        parkingLotSystem.parkVehicle(new Object());
+        boolean isUnParked = parkingLotSystem.unParkVehicle(vehicle);
+        Assertions.assertFalse(isUnParked);
+    }
+
 }
