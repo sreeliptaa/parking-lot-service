@@ -8,6 +8,8 @@ package com.bridgelabz;
  */
 
 public class ParkingLotSystem {
+    private Object vehicle;
+
     public ParkingLotSystem() {
     }
 
@@ -26,6 +28,9 @@ public class ParkingLotSystem {
      * @return True For Vehicle Parked
      */
     public boolean parkVehicle(Object vehicle) {
+        if (this.vehicle != null)
+            return false;
+        this.vehicle = vehicle;
         return true;
     }
 }

@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ParkingLotSystemTest {
-    ParkingLotSystem parkingLotSystem;
+    ParkingLotSystem parkingLotSystem = null;
+    Object vehicle = null;
 
     @BeforeEach
     void setUp() {
         parkingLotSystem = new ParkingLotSystem();
+        vehicle = new Object();
     }
 
     @Test
@@ -21,5 +23,12 @@ public class ParkingLotSystemTest {
     public void givenAVehicle_WhenParked_ShouldReturnTrue() {
         boolean isParked = parkingLotSystem.parkVehicle(new Object());
         Assertions.assertTrue(isParked);
+    }
+
+    @Test
+    public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() {
+        parkingLotSystem.parkVehicle(vehicle);
+        boolean isParked = parkingLotSystem.parkVehicle(new Object());
+        Assertions.assertFalse(isParked);
     }
 }
