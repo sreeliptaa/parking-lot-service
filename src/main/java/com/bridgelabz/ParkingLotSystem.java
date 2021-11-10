@@ -27,11 +27,11 @@ public class ParkingLotSystem {
      * @param vehicle given vehicle as parameter
      * @return True For Vehicle Parked
      */
-    public boolean parkVehicle(Object vehicle) {
+    public void parkVehicle(Object vehicle) throws ParkingLotSystemException {
         if (this.vehicle != null)
-            return false;
+            throw new ParkingLotSystemException("Parking Lot is Full");
         this.vehicle = vehicle;
-        return true;
+        // return true;
     }
 
     /**
@@ -47,5 +47,15 @@ public class ParkingLotSystem {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Purpose : To Check Vehicle is Parked Or Not
+     *
+     * @param vehicle given Vehicle as parameter
+     * @return Vehicle Equal to Given Vehicle
+     */
+    public boolean isVehicleParked(Object vehicle) {
+        return this.vehicle.equals(vehicle);
     }
 }
