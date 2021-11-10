@@ -42,26 +42,48 @@ public class ParkingLotSystemTest {
     }
 
     @Test
+    public void givenNullVehicle_WhenUnParked_ShouldReturnException() {
+        try {
+            parkingLotSystem.unParkVehicle(vehicle);
+        } catch (ParkingLotSystemException e) {
+            Assertions.assertEquals("No Such Vehicle Found", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void givenAVehicle_WhenUnParked_ShouldReturnTrue() {
-        Object vehicle = new Object();
-        parkingLotSystem.isVehicleParked(vehicle);
-        boolean isUnParked = parkingLotSystem.unParkVehicle(vehicle);
-        Assertions.assertTrue(isUnParked);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.unParkVehicle(vehicle);
+            boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
+            Assertions.assertTrue(isUnParked);
+        } catch (ParkingLotSystemException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test
     public void givenAVehicle_WhenUnParkedFromEmptySlot_ShouldReturnFalse() {
-        Object vehicle = new Object();
-        boolean isUnParked = parkingLotSystem.unParkVehicle(vehicle);
-        Assertions.assertFalse(isUnParked);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
+            Assertions.assertFalse(isUnParked);
+        } catch (ParkingLotSystemException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void givenAVehicle_WhenUnParkedAnotherVehicle_ShouldReturnFalse() {
-        Object vehicle = new Object();
-        parkingLotSystem.isVehicleParked(new Object());
-        boolean isUnParked = parkingLotSystem.unParkVehicle(vehicle);
-        Assertions.assertFalse(isUnParked);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+            boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
+            Assertions.assertFalse(isUnParked);
+        } catch (ParkingLotSystemException e) {
+            e.printStackTrace();
+        }
     }
 
 }

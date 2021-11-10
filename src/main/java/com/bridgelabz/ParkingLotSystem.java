@@ -25,7 +25,7 @@ public class ParkingLotSystem {
      * Purpose : This method created to Park Given Vehicle in Parking Lot
      *
      * @param vehicle given vehicle as parameter
-     * @return True For Vehicle Parked
+     * @throws ParkingLotSystemException : when the parking lot is full
      */
     public void parkVehicle(Object vehicle) throws ParkingLotSystemException {
         if (this.vehicle != null)
@@ -38,15 +38,13 @@ public class ParkingLotSystem {
      * Purpose : This method created to UnParked the Vehicle from parking lot
      *
      * @param vehicle given vehicle as parameter
-     * @return Vehicle UnParked or Not
+     * @throws ParkingLotSystemException : when there is no vehicle to unpark
      */
-    public boolean unParkVehicle(Object vehicle) {
-        if (this.vehicle == null) return false;
+    public void unParkVehicle(Object vehicle) throws ParkingLotSystemException {
+        if (this.vehicle == null) throw new ParkingLotSystemException("No Such Vehicle Found");
         if (this.vehicle.equals(vehicle)) {
             this.vehicle = null;
-            return true;
         }
-        return false;
     }
 
     /**
@@ -57,5 +55,15 @@ public class ParkingLotSystem {
      */
     public boolean isVehicleParked(Object vehicle) {
         return this.vehicle.equals(vehicle);
+    }
+
+    /**
+     * Purpose : To Check a Vehicle is UnParked Or Not
+     *
+     * @param vehicle given Vehicle as parameter
+     * @return The Vehicle is UnParked
+     */
+    public boolean isVehicleUnParked(Object vehicle) {
+        return this.vehicle == null;
     }
 }
