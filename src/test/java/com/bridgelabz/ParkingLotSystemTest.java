@@ -10,7 +10,7 @@ public class ParkingLotSystemTest {
 
     @BeforeEach
     void setUp() {
-        parkingLotSystem = new ParkingLotSystem(1);
+        parkingLotSystem = new ParkingLotSystem(2);
         vehicle = new Object();
     }
 
@@ -32,13 +32,12 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() {
+    public void givenAVehicle_WhenAlreadyParked_ShouldReturnException() {
         try {
             parkingLotSystem.parkVehicle(vehicle);
-            parkingLotSystem.parkVehicle(new Object());
+            parkingLotSystem.parkVehicle(vehicle);
         } catch (ParkingLotSystemException e) {
             Assertions.assertEquals("Parking Lot is Full", e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -48,7 +47,6 @@ public class ParkingLotSystemTest {
             parkingLotSystem.unParkVehicle(vehicle);
         } catch (ParkingLotSystemException e) {
             Assertions.assertEquals("No Such Vehicle Found", e.getMessage());
-            e.printStackTrace();
         }
     }
 
