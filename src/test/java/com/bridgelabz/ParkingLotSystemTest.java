@@ -10,7 +10,7 @@ public class ParkingLotSystemTest {
 
     @BeforeEach
     void setUp() {
-        parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem = new ParkingLotSystem(1);
         vehicle = new Object();
     }
 
@@ -93,9 +93,11 @@ public class ParkingLotSystemTest {
         parkingLotSystem.registerOwner(owner);
         try {
             parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(new Object());
         } catch (ParkingLotSystemException e) {
-            Assertions.assertEquals("Parking Lot is Full", e.getMessage());
             e.printStackTrace();
         }
+        boolean capacityFull = owner.isCapacityFull();
+        Assertions.assertTrue(capacityFull);
     }
 }

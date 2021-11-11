@@ -8,10 +8,14 @@ package com.bridgelabz;
  */
 
 public class ParkingLotSystem {
+    private int currentCapacity;
+    private final int actualCapacity;
     private Object vehicle;
     private ParkingLotSystemOwner owner;
 
-    public ParkingLotSystem() {
+    public ParkingLotSystem(int capacity) {
+        this.currentCapacity = 0;
+        this.actualCapacity = capacity;
     }
 
     /**
@@ -29,10 +33,12 @@ public class ParkingLotSystem {
      * @throws ParkingLotSystemException : when the parking lot is full
      */
     public void parkVehicle(Object vehicle) throws ParkingLotSystemException {
-        if (this.vehicle != null)
+        if (this.currentCapacity == this.actualCapacity) {
+            owner.capacityIsFull();
             throw new ParkingLotSystemException("Parking Lot is Full");
+        }
+        this.currentCapacity++;
         this.vehicle = vehicle;
-        // return true;
     }
 
     /**
