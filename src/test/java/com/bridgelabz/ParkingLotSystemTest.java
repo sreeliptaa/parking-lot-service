@@ -16,6 +16,7 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenMessage_ShouldPrintWelcomeMessage() {
+
         parkingLotSystem.printWelcomeMessage();
     }
 
@@ -86,4 +87,15 @@ public class ParkingLotSystemTest {
         }
     }
 
+    @Test
+    public void givenAVehicle_WhenParkingLotIsFull_ShouldInformTheOwner() {
+        ParkingLotSystemOwner owner = new ParkingLotSystemOwner();
+        parkingLotSystem.registerOwner(owner);
+        try {
+            parkingLotSystem.parkVehicle(vehicle);
+        } catch (ParkingLotSystemException e) {
+            Assertions.assertEquals("Parking Lot is Full", e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

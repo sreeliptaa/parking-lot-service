@@ -9,6 +9,7 @@ package com.bridgelabz;
 
 public class ParkingLotSystem {
     private Object vehicle;
+    private ParkingLotSystemOwner owner;
 
     public ParkingLotSystem() {
     }
@@ -54,6 +55,7 @@ public class ParkingLotSystem {
      * @return Vehicle Equal to Given Vehicle
      */
     public boolean isVehicleParked(Object vehicle) {
+
         return this.vehicle.equals(vehicle);
     }
 
@@ -64,6 +66,16 @@ public class ParkingLotSystem {
      * @return The Vehicle is UnParked
      */
     public boolean isVehicleUnParked(Object vehicle) {
+
         return this.vehicle == null;
+    }
+
+    /**
+     * Purpose : This method created for register Parking Lot Owner
+     *
+     * @param owner given Parameter as Owner
+     */
+    public void registerOwner(ParkingLotSystemOwner owner) {
+        this.owner = owner;
     }
 }
