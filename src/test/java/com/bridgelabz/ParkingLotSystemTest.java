@@ -54,7 +54,7 @@ public class ParkingLotSystemTest {
     public void givenAVehicle_WhenUnParked_ShouldReturnTrue() {
         try {
             parkingLotSystem.parkVehicle(vehicle);
-            parkingLotSystem.unParkVehicle(vehicle);
+            parkingLotSystem.unParkVehicle(new Object());
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
             Assertions.assertTrue(isUnParked);
         } catch (ParkingLotSystemException e) {
@@ -110,6 +110,22 @@ public class ParkingLotSystemTest {
         } catch (ParkingLotSystemException e) {
             boolean capacityFull = airportSecurity.isCapacityFull();
             Assertions.assertTrue(capacityFull);
+        }
+    }
+
+    @Test
+    public void givenVehicle_WhenParkingLotAvailable_ShouldInformTheOwner() {
+        ParkingLotSystemOwner owner = new ParkingLotSystemOwner();
+
+        try {
+            parkingLotSystem.registerParkingLotSystemObserver(owner);
+            parkingLotSystem.parkVehicle(vehicle);
+            parkingLotSystem.parkVehicle(new Object());
+            Assertions.assertTrue(owner.isCapacityFull());
+            parkingLotSystem.unParkVehicle(vehicle);
+            Assertions.assertFalse(owner.isCapacityFull());
+        } catch (ParkingLotSystemException e) {
+            Assertions.assertEquals("Parking Lot is Full", e.getMessage());
         }
     }
 }

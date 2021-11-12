@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Purpose : To Simulate the Parking Lot System
@@ -11,13 +12,14 @@ import java.util.ArrayList;
 
 public class ParkingLotSystem {
     private final int actualCapacity;
-    private Object vehicle;
+    private List vehicle;
     private int currentCapacity;
     private final ArrayList<ParkingLotSystemObserver> parkingLotSystemObservers;
 
     public ParkingLotSystem(int capacity) {
         this.currentCapacity = 0;
         this.actualCapacity = capacity;
+        this.vehicle = new ArrayList();
         this.parkingLotSystemObservers = new ArrayList<>();
     }
 
@@ -42,7 +44,7 @@ public class ParkingLotSystem {
             throw new ParkingLotSystemException("Parking Lot is Full");
         }
         this.currentCapacity++;
-        this.vehicle = vehicle;
+        this.vehicle.add(vehicle);
     }
 
     /**
@@ -51,11 +53,12 @@ public class ParkingLotSystem {
      * @param vehicle given vehicle as parameter
      * @throws ParkingLotSystemException : when there is no vehicle to un park
      */
-    public void unParkVehicle(Object vehicle) throws ParkingLotSystemException {
-        if (this.vehicle == null) throw new ParkingLotSystemException("No Such Vehicle Found");
-        if (this.vehicle.equals(vehicle)) {
-            this.vehicle = null;
+    public boolean unParkVehicle(Object vehicle) throws ParkingLotSystemException {
+        if (this.vehicle.contains(vehicle)) {
+            this.vehicle.remove(vehicle);
+            return true;
         }
+        throw new ParkingLotSystemException("No Such Vehicle Found");
     }
 
     /**
@@ -66,7 +69,7 @@ public class ParkingLotSystem {
      */
     public boolean isVehicleParked(Object vehicle) {
 
-        return this.vehicle.equals(vehicle);
+        return this.vehicle.contains(vehicle);
     }
 
     /**
