@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
+
 /**
  * Purpose : To Simulate the Parking Lot System
  *
@@ -8,14 +10,15 @@ package com.bridgelabz;
  */
 
 public class ParkingLotSystem {
-    private int currentCapacity;
     private final int actualCapacity;
     private Object vehicle;
-    private ParkingLotSystemOwner owner;
+    private int currentCapacity;
+    private final ArrayList<ParkingLotSystemObserver> parkingLotSystemObservers;
 
     public ParkingLotSystem(int capacity) {
         this.currentCapacity = 0;
         this.actualCapacity = capacity;
+        this.parkingLotSystemObservers = new ArrayList<>();
     }
 
     /**
@@ -34,7 +37,8 @@ public class ParkingLotSystem {
      */
     public void parkVehicle(Object vehicle) throws ParkingLotSystemException {
         if (this.currentCapacity == this.actualCapacity) {
-            owner.capacityIsFull();
+            for (ParkingLotSystemObserver parkingLotSystemObserver : parkingLotSystemObservers)
+                parkingLotSystemObserver.capacityIsFull();
             throw new ParkingLotSystemException("Parking Lot is Full");
         }
         this.currentCapacity++;
@@ -45,7 +49,7 @@ public class ParkingLotSystem {
      * Purpose : This method created to UnParked the Vehicle from parking lot
      *
      * @param vehicle given vehicle as parameter
-     * @throws ParkingLotSystemException : when there is no vehicle to unpark
+     * @throws ParkingLotSystemException : when there is no vehicle to un park
      */
     public void unParkVehicle(Object vehicle) throws ParkingLotSystemException {
         if (this.vehicle == null) throw new ParkingLotSystemException("No Such Vehicle Found");
@@ -72,16 +76,15 @@ public class ParkingLotSystem {
      * @return The Vehicle is UnParked
      */
     public boolean isVehicleUnParked(Object vehicle) {
-
         return this.vehicle == null;
     }
 
     /**
-     * Purpose : This method created for register Parking Lot Owner
+     * Purpose : Register Observer as Like Owner and Security In List
      *
-     * @param owner given Parameter as Owner
+     * @param observer To Add in the List
      */
-    public void registerOwner(ParkingLotSystemOwner owner) {
-        this.owner = owner;
+    public void registerParkingLotSystemObserver(ParkingLotSystemObserver observer) {
+        this.parkingLotSystemObservers.add(observer);
     }
 }

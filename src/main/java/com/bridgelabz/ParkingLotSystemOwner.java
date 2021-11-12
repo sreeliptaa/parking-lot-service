@@ -7,14 +7,14 @@ package com.bridgelabz;
  * @since 2021-11-10
  */
 
-public class ParkingLotSystemOwner {
-    private boolean isFullCapacity;
+public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
+    private boolean actualCapacity;
 
     /**
      * Purpose : This method is created to give the status of full capacity of parking lot
      */
     public void capacityIsFull() {
-        isFullCapacity = true;
+        actualCapacity = true;
     }
 
     /**
@@ -23,6 +23,6 @@ public class ParkingLotSystemOwner {
      * @return the status of the parking lot
      */
     public boolean isCapacityFull() {
-        return this.isFullCapacity;
+        return this.actualCapacity;
     }
 }
