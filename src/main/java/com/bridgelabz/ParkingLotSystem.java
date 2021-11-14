@@ -12,8 +12,8 @@ import java.util.List;
 
 public class ParkingLotSystem {
     private final int actualCapacity;
-    private List vehicle;
-    // private int currentCapacity;
+    private List <Vehicle> vehicleList;
+    private Vehicle vehicle;
     private ArrayList<ParkingLotSystemObserver> parkingLotSystemObservers;
 
     public ParkingLotSystem(int capacity) {
@@ -34,9 +34,9 @@ public class ParkingLotSystem {
      * Purpose: Initialize The VehiclesList With Null Values
      */
     public void initializeParkingLot() {
-        this.vehicle = new ArrayList();
+        this.vehicleList = new ArrayList();
         for (int i = 0; i < this.actualCapacity; i++) {
-            vehicle.add(i, null);
+            vehicleList.add(i, null);
         }
     }
 
@@ -46,16 +46,16 @@ public class ParkingLotSystem {
      * @param vehicle given vehicle as parameter
      * @throws ParkingLotSystemException : when the parking lot is full
      */
-    public void parkVehicle(Object vehicle, Integer slot) throws ParkingLotSystemException {
-        if (this.vehicle.size() == actualCapacity && !this.vehicle.contains(null)) {
+    public void parkVehicle(Vehicle vehicle, Integer slot) throws ParkingLotSystemException {
+        if (this.vehicleList.size() == actualCapacity && !this.vehicleList.contains(null)) {
             for (ParkingLotSystemObserver parkingLotSystemObserver : parkingLotSystemObservers)
                 parkingLotSystemObserver.capacityIsFull();
             throw new ParkingLotSystemException("Parking Lot is Full");
         }
-        if (this.vehicle.contains(vehicle)) {
+        if (this.vehicleList.contains(vehicle)) {
             throw new ParkingLotSystemException("Vehicle already exist");
         }
-        this.vehicle.set(slot, vehicle);
+        this.vehicleList.set(slot, vehicle);
     }
 
     /**
@@ -68,8 +68,8 @@ public class ParkingLotSystem {
         if (vehicle == null) {
             throw new ParkingLotSystemException("Vehicle is not available");
         }
-        if (this.vehicle.contains(vehicle)) {
-            this.vehicle.remove(vehicle);
+        if (this.vehicleList.contains(vehicle)) {
+            this.vehicleList.remove(vehicle);
             for (ParkingLotSystemObserver parkingLotSystemObserver : parkingLotSystemObservers)
                 parkingLotSystemObserver.parkingCapacityAvailable();
             return true;
@@ -85,7 +85,7 @@ public class ParkingLotSystem {
      */
     public boolean isVehicleParked(Object vehicle) {
 
-        return this.vehicle.contains(vehicle);
+        return this.vehicleList.contains(vehicle);
     }
 
     /**
@@ -95,7 +95,7 @@ public class ParkingLotSystem {
      * @return The Vehicle is UnParked
      */
     public boolean isVehicleUnParked(Object vehicle) {
-        if (this.vehicle.contains(vehicle)) {
+        if (this.vehicleList.contains(vehicle)) {
             return false;
         }
         return true;
@@ -118,7 +118,7 @@ public class ParkingLotSystem {
     public List<Integer> getListOfEmptySlots() {
         List<Integer> emptyParkingSlots = new ArrayList<>();
         for (int i = 0; i < actualCapacity; i++) {
-            if (this.vehicle.get(i) == null) {
+            if (this.vehicleList.get(i) == null) {
                 emptyParkingSlots.add(i);
             }
         }
@@ -132,9 +132,21 @@ public class ParkingLotSystem {
      * @return index of vehicle that we want to find
      */
     public int findVehicle(Object vehicle) {
-        if (this.vehicle.contains(vehicle)) {
-            return this.vehicle.indexOf(vehicle);
+        if (this.vehicleList.contains(vehicle)) {
+            return this.vehicleList.indexOf(vehicle);
         }
         throw new ParkingLotSystemException("Vehicle Is Not Available");
+    }
+
+    /**
+     * Purpose: To Find the Time when Vehicle Parked
+     * @param vehicle is passed as parameter
+     * @return parking time of the vehicle
+     */
+    public String getVehicleParkingTime(Vehicle vehicle) {
+        if (isVehicleParked(vehicle)) {
+            return vehicle.getParkingTime();
+        }
+        return null;
     }
 }
