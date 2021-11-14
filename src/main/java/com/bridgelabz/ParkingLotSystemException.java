@@ -7,7 +7,7 @@ package com.bridgelabz;
  * @since 2021-11-10
  */
 
-public class ParkingLotSystemException extends Exception {
+public class ParkingLotSystemException extends RuntimeException {
     public ParkingLotSystemException(String message) {
 
         super(message);

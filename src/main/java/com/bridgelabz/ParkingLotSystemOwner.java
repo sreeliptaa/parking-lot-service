@@ -14,6 +14,7 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
      * Purpose : This method is created to give the status of full capacity of parking lot
      */
     public void capacityIsFull() {
+
         actualCapacity = true;
     }
 
@@ -23,11 +24,16 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
      * @return the status of the parking lot
      */
     public boolean isCapacityFull() {
+
         return this.actualCapacity;
     }
 
+    /**
+     * Purpose : This method is created to check status of parking capacity available in the parking lot
+     */
     @Override
-    public void parkingCapacityAvailable() {
-        this.actualCapacity = false;
+    public boolean parkingCapacityAvailable() {
+
+        return this.actualCapacity = false;
     }
 }
