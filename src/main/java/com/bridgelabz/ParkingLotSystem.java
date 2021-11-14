@@ -124,4 +124,17 @@ public class ParkingLotSystem {
         }
         return emptyParkingSlots;
     }
+
+    /**
+     * Purpose : To find the vehicle in the parking lot
+     *
+     * @param vehicle : Take vehicle as a parameter
+     * @return index of vehicle that we want to find
+     */
+    public int findVehicle(Object vehicle) {
+        if (this.vehicle.contains(vehicle)) {
+            return this.vehicle.indexOf(vehicle);
+        }
+        throw new ParkingLotSystemException("Vehicle Is Not Available");
+    }
 }

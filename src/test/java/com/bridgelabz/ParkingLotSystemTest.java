@@ -45,7 +45,7 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenAVehicle_WhenUnParked_ShouldReturnTrue() {
-        parkingLotSystem.parkVehicle(vehicle , 0);
+        parkingLotSystem.parkVehicle(vehicle, 0);
         Assertions.assertTrue(parkingLotSystem.isVehicleParked(vehicle));
         parkingLotSystem.unParkVehicle(vehicle);
         Assertions.assertTrue(parkingLotSystem.isVehicleUnParked(vehicle));
@@ -70,7 +70,7 @@ public class ParkingLotSystemTest {
             parkingLotSystem.parkVehicle(vehicle, 1);
             parkingLotSystem.parkVehicle(vehicle, 2);
             parkingLotSystem.unParkVehicle(vehicle);
-        }, "Parking Lot is Full" );
+        }, "Parking Lot is Full");
     }
 
     @Test
@@ -81,7 +81,7 @@ public class ParkingLotSystemTest {
             parkingLotSystem.parkVehicle(new Object(), 0);
             parkingLotSystem.parkVehicle(vehicle, 1);
             parkingLotSystem.parkVehicle(vehicle, 2);
-        },   "Parking Lot is Full");
+        }, "Parking Lot is Full");
 
     }
 
@@ -90,9 +90,9 @@ public class ParkingLotSystemTest {
         ParkingLotSystemOwner owner = new ParkingLotSystemOwner();
         parkingLotSystem.registerParkingLotSystemObserver(owner);
         Assertions.assertThrows(ParkingLotSystemException.class, () -> {
-            parkingLotSystem.parkVehicle(vehicle , 0);
-            parkingLotSystem.parkVehicle(new Object() , 1);
-            parkingLotSystem.parkVehicle(new Object() , 2);
+            parkingLotSystem.parkVehicle(vehicle, 0);
+            parkingLotSystem.parkVehicle(new Object(), 1);
+            parkingLotSystem.parkVehicle(new Object(), 2);
         });
         Assertions.assertTrue(owner.isCapacityFull());
         parkingLotSystem.unParkVehicle(vehicle);
@@ -105,5 +105,13 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkVehicle(vehicle, 0);
         listOfEmptySlots = parkingLotSystem.getListOfEmptySlots();
         Assertions.assertEquals(1, listOfEmptySlots.size());
+    }
+
+    @Test
+    public void givenParkingLotSystem_WhenCheckedForVehicle_ShouldReturnVehicleSlot() {
+        listOfEmptySlots = parkingLotSystem.getListOfEmptySlots();
+        parkingLotSystem.parkVehicle(vehicle, 0);
+        int slotNumber = parkingLotSystem.findVehicle(vehicle);
+        Assertions.assertEquals(0, slotNumber);
     }
 }
