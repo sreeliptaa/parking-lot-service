@@ -32,8 +32,8 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
      * Purpose : This method is created to check status of parking capacity available in the parking lot
      */
     @Override
-    public boolean parkingCapacityAvailable() {
+    public void parkingCapacityAvailable() {
 
-        return this.actualCapacity = false;
+        this.actualCapacity = false;
     }
 }

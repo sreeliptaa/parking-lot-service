@@ -41,17 +41,18 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenNullVehicle_WhenUnParked_ShouldReturnException() {
-        Assertions.assertThrows(ParkingLotSystemException.class, () -> parkingLotSystem.unParkVehicle(null), "No Such Vehicle Found");
-    }
-
-    @Test
     public void givenAVehicle_WhenUnParked_ShouldReturnTrue() {
         vehicle = new Vehicle("Audi", "OR-05AB4321", "09:00");
         parkingLotSystem.parkVehicle(vehicle, 0);
         Assertions.assertTrue(parkingLotSystem.isVehicleParked(vehicle));
         parkingLotSystem.unParkVehicle(vehicle);
         Assertions.assertTrue(parkingLotSystem.isVehicleUnParked(vehicle));
+    }
+
+    @Test
+    public void givenNullVehicle_WhenUnParked_ShouldReturnException() {
+        Assertions.assertThrows(ParkingLotSystemException.class, () -> parkingLotSystem.unParkVehicle(null),
+                "No Such Vehicle Found");
     }
 
     @Test

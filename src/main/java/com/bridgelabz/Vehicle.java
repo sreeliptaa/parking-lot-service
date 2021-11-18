@@ -10,23 +10,21 @@ package com.bridgelabz;
 public class Vehicle {
     private final String name;
     private final String vehicleNumber;
-    private final String parkingTime;
+    private final String vehicleParkingTime;
 
-    public Vehicle(String name, String vehicleNumber, String parkingTime) {
+    public Vehicle(String name, String vehicleNumber, String vehicleParkingTime) {
         this.name = name;
         this.vehicleNumber = vehicleNumber;
-        this.parkingTime = parkingTime;
+        this.vehicleParkingTime = vehicleParkingTime;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-
+    /**
+     * Purpose: To Find the parking time of the Vehicle
+     *
+     * @return parking time of the vehicle
+     */
     public String getParkingTime() {
-        return parkingTime;
+
+        return vehicleParkingTime;
     }
 }

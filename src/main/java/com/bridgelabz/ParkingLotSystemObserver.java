@@ -5,5 +5,5 @@ public interface ParkingLotSystemObserver {
 
     boolean isCapacityFull();
 
-    boolean parkingCapacityAvailable();
+    void parkingCapacityAvailable();
 }

@@ -18,9 +18,9 @@ public class AirportSecurity implements ParkingLotSystemObserver {
     }
 
     /**
-     * Purpose: To Return Parking Capacity
+     * Purpose: To Return actual Capacity
      *
-     * @return true if parkingFull Or False
+     * @return true if parking lot Full Or False
      */
     public boolean isCapacityFull() {
 
@@ -32,8 +32,8 @@ public class AirportSecurity implements ParkingLotSystemObserver {
      * * @return false if parking is available
      */
     @Override
-    public boolean parkingCapacityAvailable() {
+    public void parkingCapacityAvailable() {
 
-        return this.actualCapacity = false;
+        this.actualCapacity = false;
     }
 }
