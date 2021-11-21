@@ -159,6 +159,7 @@ public class ParkingLotSystem {
      *
      * @param vehicle is passed as parameter to find the position
      * @return the position of the white color vehicle
+     * @throws ParkingLotSystemException : when there is no vehicle found
      */
     public int getPositionOfWhiteColorVehicle(Vehicle vehicle) throws ParkingLotSystemException {
         if (isVehicleParked(vehicle) && vehicle.getVehicleColor().equals("White"))
@@ -168,5 +169,43 @@ public class ParkingLotSystem {
             }
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_VEHICLE,
                 "No white color vehicle found");
+    }
+
+    /**
+     * Purpose: To Find the position of the blue color Vehicle Parked
+     *
+     * @param vehicle is passed as parameter to find the position
+     * @return the position of the blue color vehicle
+     * @throws ParkingLotSystemException : when there is no vehicle found
+     */
+    public int getPositionOfBlueColorVehicle(Vehicle vehicle) throws ParkingLotSystemException {
+        if (isVehicleParked(vehicle)
+                && vehicle.getVehicleColor().equals("Blue")
+                && vehicle.getName().equals("Toyota"))
+            for (Vehicle position : vehicleList) {
+                if (position.equals(vehicle))
+                    return vehicleList.indexOf(position);
+            }
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_VEHICLE,
+                "No such vehicle found");
+    }
+
+    /**
+     * Purpose: To Find the number plate of the blue color Vehicle Parked
+     *
+     * @param vehicle is passed as parameter to find the number plate of the vehicle
+     * @return the position of the number plate of the vehicle
+     * @throws ParkingLotSystemException : when there is no vehicle found
+     */
+    public String getNumberPlateOfBlueColorVehicle(Vehicle vehicle) throws ParkingLotSystemException {
+        if (isVehicleParked(vehicle)
+                && vehicle.getVehicleColor().equals("Blue")
+                && vehicle.getName().equals("Toyota"))
+            for (Vehicle numberPlate : vehicleList) {
+                if (numberPlate.equals(vehicle))
+                    return numberPlate.getVehicleNumber();
+            }
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_VEHICLE,
+                "No such vehicle found");
     }
 }

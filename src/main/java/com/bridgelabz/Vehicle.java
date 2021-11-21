@@ -40,4 +40,22 @@ public class Vehicle {
         return vehicleColor;
     }
 
+    /**
+     * Purpose: To get the number of the Vehicle
+     *
+     * @return the number of the vehicle
+     */
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    /**
+     * Purpose: To get the name of the Vehicle
+     *
+     * @return the name of the vehicle
+     */
+    public String getName() {
+        return name;
+    }
+
 }
