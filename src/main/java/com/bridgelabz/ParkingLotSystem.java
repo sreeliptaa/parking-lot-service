@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public class ParkingLotSystem {
+    private static boolean isDriverHandicapped;
     private final int actualCapacity;
     private ArrayList<Vehicle> vehicleList;
     private final ArrayList<ParkingLotSystemObserver> parkingLotSystemObservers;
@@ -151,5 +152,21 @@ public class ParkingLotSystem {
             return vehicle.getParkingTime();
         }
         return null;
+    }
+
+    /**
+     * Purpose: To Find the position of the white color Vehicle Parked
+     *
+     * @param vehicle is passed as parameter to find the position
+     * @return the position of the white color vehicle
+     */
+    public int getPositionOfWhiteColorVehicle(Vehicle vehicle) throws ParkingLotSystemException {
+        if (isVehicleParked(vehicle) && vehicle.getVehicleColor().equals("White"))
+            for (Vehicle position : vehicleList) {
+                if (position.equals(vehicle))
+                    return vehicleList.indexOf(position);
+            }
+        throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_VEHICLE,
+                "No white color vehicle found");
     }
 }
