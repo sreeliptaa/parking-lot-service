@@ -175,4 +175,12 @@ public class ParkingLotSystemTest {
         int positionOfVehicle2 = parkingLotSystem.getBMWVehiclePosition(vehicle2);
         Assertions.assertEquals(1, positionOfVehicle2);
     }
+
+    @Test
+    void givenVehicle_WhenCheckedVehicleNumber_ShouldPassVehicleNumberPlateValidation() throws ParkingLotSystemException {
+        Vehicle vehicle = new Vehicle("Audi", "OR-05AB4321", "09:00", "White");
+        parkingLotSystem.parkVehicle(vehicle, 0);
+        boolean vehicleNumberPlate = parkingLotSystem.validateVehicleNumberPlate(vehicle.getVehicleNumber());
+        Assertions.assertTrue(vehicleNumberPlate);
+    }
 }
