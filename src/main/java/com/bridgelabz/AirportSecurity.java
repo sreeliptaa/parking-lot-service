@@ -7,14 +7,14 @@ package com.bridgelabz;
  * @since 2021-11-10
  */
 public class AirportSecurity implements ParkingLotSystemObserver {
-    private boolean actualCapacity;
+    private boolean isFullCapacity;
 
     /**
      * Purpose: To change Parking Capacity To True If Parking Is Full
      */
     public void capacityIsFull() {
 
-        this.actualCapacity = true;
+        this.isFullCapacity = true;
     }
 
     /**
@@ -24,7 +24,7 @@ public class AirportSecurity implements ParkingLotSystemObserver {
      */
     public boolean isCapacityFull() {
 
-        return this.actualCapacity;
+        return this.isFullCapacity;
     }
 
     /**
@@ -34,6 +34,6 @@ public class AirportSecurity implements ParkingLotSystemObserver {
     @Override
     public void parkingCapacityAvailable() {
 
-        this.actualCapacity = false;
+        this.isFullCapacity = false;
     }
 }

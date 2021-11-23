@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
-    private boolean actualCapacity;
+    private boolean isFullCapacity;
     static Map<Object, LocalDateTime> localDateTimeMap = new HashMap<>();
 
     /**
@@ -20,7 +20,7 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
      */
     public void capacityIsFull() {
 
-        actualCapacity = true;
+        isFullCapacity = true;
     }
 
     /**
@@ -30,7 +30,7 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
      */
     public boolean isCapacityFull() {
 
-        return this.actualCapacity;
+        return this.isFullCapacity;
     }
 
     /**
@@ -39,7 +39,7 @@ public class ParkingLotSystemOwner implements ParkingLotSystemObserver {
     @Override
     public void parkingCapacityAvailable() {
 
-        this.actualCapacity = false;
+        isFullCapacity = false;
     }
 
     /**
