@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  */
 
 public class ParkingLotSystem {
-    private static boolean isDriverHandicapped;
     private final int actualCapacity;
     private ArrayList<Vehicle> vehicleList;
     private final ArrayList<ParkingLotSystemObserver> parkingLotSystemObservers;
@@ -45,7 +44,7 @@ public class ParkingLotSystem {
     /**
      * Purpose : This method created to Park Given Vehicle in Parking Lot
      *
-     * @param vehicle given vehicle as parameter
+     * @param vehicle given vehicle as parameter to park
      * @throws ParkingLotSystemException : when the parking lot is full
      */
     public void parkVehicle(Vehicle vehicle, Integer slot) throws ParkingLotSystemException {
@@ -60,6 +59,7 @@ public class ParkingLotSystem {
                     "Vehicle already exist");
         }
         this.vehicleList.set(slot, vehicle);
+        ParkingLotSystemOwner.vehicleParkingTime(vehicle);
     }
 
     /**
@@ -144,19 +144,6 @@ public class ParkingLotSystem {
     }
 
     /**
-     * Purpose: To Find the Time when Vehicle Parked
-     *
-     * @param vehicle is passed as parameter
-     * @return parking time of the vehicle
-     */
-    public String getVehicleParkingTime(Vehicle vehicle) {
-        if (isVehicleParked(vehicle)) {
-            return vehicle.getParkingTime();
-        }
-        return null;
-    }
-
-    /**
      * Purpose: To Find the position of the white color Vehicle Parked
      *
      * @param vehicle is passed as parameter to find the position
@@ -170,7 +157,7 @@ public class ParkingLotSystem {
                     return vehicleList.indexOf(position);
             }
         throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_VEHICLE,
-                "No white color vehicle found");
+                "No such vehicle found");
     }
 
     /**
@@ -215,7 +202,7 @@ public class ParkingLotSystem {
      * Purpose: To Find the all BMW Vehicle Parked in the parking lot system
      *
      * @param vehicle is passed as parameter to find the all BMW vehicle
-     * @return the all BMW vehicles
+     * @return the all BMW vehicles of the parking lot
      * @throws ParkingLotSystemException : when there is no vehicle found
      */
     public int getBMWVehiclePosition(Vehicle vehicle) throws ParkingLotSystemException {
@@ -236,11 +223,11 @@ public class ParkingLotSystem {
      * @return : the matching value of that vehicle number if true or false
      */
     public boolean validateVehicleNumberPlate(String vehicleNumber) {
-        Pattern pattern = Pattern.compile("^[A-Z]{2}[ -][0-9]{2}[A-Z]{2}[0-9]{4}$");
+        Pattern pattern = Pattern.compile("^[A-Z]{2}[-][0-9]{2}[A-Z]{2}[0-9]{4}$");
         Matcher matcher = pattern.matcher(vehicleNumber);
-        boolean number = matcher.matches();
+        boolean value = matcher.matches();
         if (vehicleNumber.isEmpty())
             return false;
-        return number;
+        return value;
     }
 }
