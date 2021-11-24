@@ -11,42 +11,42 @@ public class Vehicle {
     private final String name;
     private final String vehicleNumber;
     private final String vehicleColor;
+    private final VehicleType vehicleType;
+    private final PersonType personType;
 
-    public Vehicle(String name, String vehicleNumber, String vehicleColor) {
-        this.name = name;
-        this.vehicleNumber = vehicleNumber;
-        this.vehicleColor = vehicleColor;
+    public VehicleType getVehicleType() {
+        return vehicleType;
     }
 
-    /**
-     * Purpose: To get the color of the Vehicle
-     *
-     * @return the color of the vehicle
-     */
-
-    public String getVehicleColor() {
-
-        return vehicleColor;
+    enum PersonType {
+        NORMAL, HANDICAP;
     }
 
-    /**
-     * Purpose: To get the number of the Vehicle
-     *
-     * @return the number of the vehicle
-     */
-    public String getVehicleNumber() {
-
-        return vehicleNumber;
+    public PersonType getPersonType() {
+        return personType;
     }
 
-    /**
-     * Purpose: To get the name of the Vehicle
-     *
-     * @return the name of the vehicle
-     */
+    enum VehicleType {
+        SMALL, MEDIUM;
+    }
+
     public String getName() {
-
         return name;
     }
 
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public String getVehicleColor() {
+        return vehicleColor;
+    }
+
+    public Vehicle(VehicleType type, PersonType personType, String name, String vehicleNumber, String vehicleColor) {
+        this.name = name;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleColor = vehicleColor;
+        this.vehicleType = type;
+        this.personType = personType;
+    }
 }

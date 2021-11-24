@@ -1,5 +1,11 @@
 package com.bridgelabz;
 
+/**
+ * Purpose:To Search the vehicle in the parking lot
+ *
+ * @author SREELIPTA
+ * @since 2021-11-10
+ */
 public class VehicleDriver {
     ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
 
@@ -12,4 +18,5 @@ public class VehicleDriver {
     public Object searchVehicle(Vehicle vehicle) {
         return parkingLotSystem.findVehicle(vehicle);
     }
+
 }

@@ -29,6 +29,7 @@ public class AirportSecurity implements ParkingLotSystemObserver {
 
     /**
      * Purpose : This method is created to check the status of parking capacity available in the parking lot
+     *
      * @return : false if parking is available
      */
     @Override

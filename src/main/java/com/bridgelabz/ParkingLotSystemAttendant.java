@@ -1,10 +1,17 @@
 package com.bridgelabz;
 
+/**
+ * Purpose:To park the vehicles by attendant whenever required
+ *
+ * @author SREELIPTA
+ * @since 2021-11-10
+ */
+
 public class ParkingLotSystemAttendant {
     ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
 
     /**
-     * This method is used when we need to park a vehicle by attendant.
+     * This method is created to park vehicle by attendant.
      *
      * @param vehicle - the vehicle to be parked.
      */
